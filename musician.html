@@ -1,97 +1,81 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
- <title>koduri</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <title> Musician LAB 6 </title>
+ 
 <body>
-<h2>Musician guess by Amrutha varshini </h2>
+<h1> Musician guess by Amrutha varshini koduri</h1>
+<h2>Getting input</h2>
 
-<label for="SecretMusician">Enter the secret musician name </label>
-    <input type ="password" id="SecretMusician" name="SecretMusician" min=10 max=50 step=2 value="John Lennon"> <br>
+<form>
+    <label for="MusicianName"> Enter the secret 
+        musician name” </label>
+    <input type ="password" id="MusicianName" name="MusicianName"  value=John Lennon> <br>
 
-    <label for="GuessMusician">Guess the musician </label>
-    <input type ="text" id="GuessMusician" name="GuessMusician" autofocus> <br>
+    <label for="guessName">Guess the Musician</label>
+    <input type ="text" id="guessName" name="guessName" autofocus> <br>
 
-    <input type="button" onclick="checkGuess()" value="Check the guess ">
+    <input type="button" onclick="checkGuess()" value="Check the guess">
 </form>
-<p id="result">This text will be replaced </p>
 
-<script> 
-    correct=0;
-    wrong=0;
-    function checkGuess(){
-        console.log("Check the guess")
-        secret = document.getElementById("SecretMusician").value
-        guess = document.getElementById("GuessMusician").value
-       if(secret==guess){
-        correct=correct+1
-        alert("You got it right")
-       }
-       else{
-        wrong+=1
-        alert("Wrong Musician")
-       }
-        
-        result.innerHTML="Correct guess: "+correct+"Wrong guess: "+wrong
+
+<p id="result">This are guessed Musicians details  </p>
+<div>
+    <img  id= "image" src="Dragon files.jpg" class="rounded mx-auto d-block" onclick="swapImage()" alt="Dragon files" style="width: 100px; height : 100px;">
+</div>
+<script>
+        function swapImage(){
+    switch(useImage){
+        case 1 ://image.src = "Dragon files.jpg" ;
+
+                document.getElementById("image").src = "Katydid.jpg";
+                useImage=useImage+1
+                break;
+        case 2 :useImage=useImage+1
+                document.getElementById("image").src = "Owlfly.jpg";
+                break;
+        case 3 :useImage=1
+                document.getElementById("image").src = "Roaches.jpg";
+                break;
+    }
 }
 </script>
-<div class="container">
-    <img src="Roaches.jpg" class="img-fluid" onclick="swapImage()" id="Image" width="100px" height="100px " alt="insect" >
-    <p id="result">This image will be replaced</p>
-    </div>
-    <script>
-        var useImage= 1
-        function swapImage(){
-            switch(useImage){
-                case 1: 
-                document.getElementById("Image").src="Dragon files.jpg";
-                useImage =  2;
-                break;
-                case 2:
-                document.getElementById("Image").src="Katydid.jpg";
-                useImage=3;
-                break;
-                case 3:
-                document.getElementById("Image").src="Owlfly.jpg";
-                useImage=1;
-                break;
-            }
-        }
-</script>
-<script>
-    let y=0;
-    const wrongguess =[];
-    function endoftheGame()
-    {
-        pwd=document.getElementById("password").value
-        guessing=document.getElementById("guess").value
-        if (pwd == guessing) {
-            if (wrong >= 3) {
-                alert("Sorry, game over.")
-            }
-            else {
-                correct++
-                alert("You got it right")
-                document.getElementById("result").innerHTML = "Correct count:" + correct + " " + "Wrong count:" + wrong
-            }
-        }
-        else {
-            if (wrong >= 3) {
-                alert("Sorry, game over.")
-            }
-            else {
-                wrong++
-                alert("Wrong Musician")
-                document.getElementById("result").innerHTML = "Correct count:" + correct + " " + "Wrong count:" + wrong
-            }
 
+<script> 
+var correct=0
+var wrong=0
+useImage=1
+    x=0
+    y=0
+function checkGuess(){
+    console.log("Getting form values")
+    name = document.getElementById("MusicianName").value
+    guess = document.getElementById("guessName").value
+
+    if(name === guess){
+        correct = correct + 1
+        x=x+1
+        alert("You got it right")
+        out.innerHTML = "correct - "+correct+" , "+"wrong - "+wrong
+    } else {
+        
+        wrong=wrong+1
+        y=y+1
+        if(x==0 && y%3==0 && y!=0){
+            alert("Sorry, Game over")
+            return
         }
+        else if(x>0){
+            x=0
+            y=0
+        }
+        alert("Wrong musician")
+        out.innerHTML = "correct - "+correct+" , "+"wrong - "+wrong
     }
-    </script>
+
+    }
+
+</script>
 
 </body>
 </html> 
